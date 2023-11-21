@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-User Model
+    User Model
 """
 import hashlib
 import uuid
@@ -41,7 +41,7 @@ class User():
             self.__password = None
         else:
             self.__password = hashlib.md5(pwd.encode()).hexdigest().lower()
-            # changed single underscore to double (solution)
+            # removed the .upper() on hash; capitalisation redundant on pwd
 
     def is_valid_password(self, pwd):
         """
@@ -55,8 +55,8 @@ class User():
             return False
         if self.__password is None:
             return False
-        return hashlib.md5(pwd.encode()).hexdigest() == self.__password
-        # removed the .upper() on hash; capitalisation redundant on pwd
+        return hashlib.md5(pwd.encode()).hexdigest() == self.password
+        # changed single underscore to double (solution)
 
 
 if __name__ == '__main__':
