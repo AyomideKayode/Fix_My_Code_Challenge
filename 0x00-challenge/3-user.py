@@ -41,7 +41,7 @@ class User():
             self.__password = None
         else:
             self.__password = hashlib.md5(pwd.encode()).hexdigest().lower()
-            # removed the .upper() on hash; capitalisation redundant on pwd
+            # changed single underscore to double (solution)
 
     def is_valid_password(self, pwd):
         """
@@ -55,8 +55,8 @@ class User():
             return False
         if self.__password is None:
             return False
-        return hashlib.md5(pwd.encode()).hexdigest().lower() == self.__password
-        # changed single underscore to double (solution)
+        return hashlib.md5(pwd.encode()).hexdigest() == self.__password
+        # removed the .upper() on hash; capitalisation redundant on pwd
 
 
 if __name__ == '__main__':
